@@ -1,0 +1,52 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border:1px solid black;
+    margin:10px;
+}
+
+
+.nav-items ul{
+    display: flex;
+    gap: 40px;       
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.nav-items ul li{
+    padding: 10px;
+    cursor: pointer;
+}
+
+   
+
+
+
+.Card{
+  width: 200px;       
+  padding: 10px;      
+  border: 1px solid black;  
+  border-radius: 10px;
+  text-align: center;
+
+}
+
+
+.Card>img{
+    width:100%;
+    height:auto;
+}
+
+.Logo{
+    height: 100px;
+    width: 100px;
+    
+}
+
+.Restaurent-List{
+    display: flex;
+    flex-wrap: wrap;
+}
