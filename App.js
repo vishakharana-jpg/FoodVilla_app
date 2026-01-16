@@ -1,3 +1,4 @@
+import { CartProvider } from "./utils/CartContext";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -14,21 +15,23 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurentMenu from "./components/RestaurentMenu";
+import Cart from "./components/Cart";
 import Login from "./components/Login";
-import Cards from "./components/Cards";
+
 
 // Layout Component
 const AppLayout = () => {
   const location = useLocation();
 
   return (
-    <>
+    <CartProvider>
       <Header />
       <Outlet />
       {location.pathname === "/" && <Footer />}
-    </>
+    </CartProvider>
   );
 };
+
 
 const appRouter = createBrowserRouter([
   {
@@ -37,7 +40,7 @@ const appRouter = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        index: true,        // ✅ FIX 1 (instead of path: "/")
+        index: true,
         element: <Body />,
       },
       {
@@ -53,8 +56,8 @@ const appRouter = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "cards",      // ✅ FIX 2 (Cards route added)
-        element: <Cards />,
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "restaurant/:resId",
@@ -64,5 +67,10 @@ const appRouter = createBrowserRouter([
   },
 ]);
 
+// ✅ Wrap RouterProvider inside CartProvider
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <CartProvider>
+    <RouterProvider router={appRouter} />
+  </CartProvider>
+);

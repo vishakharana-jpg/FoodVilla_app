@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./RestaurentCard.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { LoginButton } from "./LoginButton"; // new component
 
 export const Title = () => (
   <img
@@ -11,44 +12,22 @@ export const Title = () => (
 );
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loginStatus = localStorage.getItem("isLoggedIn");
-    setIsLoggedIn(loginStatus === "true");
-  }, []);
-
-  const handleLogin = () => {
-    navigate("/login");
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-    navigate("/login");
-  };
-
   return (
     <div className="header">
       <Title />
 
-      {/* ❌ import line removed from JSX */}
       <div className="nav-items">
         <ul>
           <li><Link to="/">HOME</Link></li>
           <li><Link to="/about">ABOUT US</Link></li>
           <li><Link to="/contact">CONTACT US</Link></li>
-          <li><Link to="/cards">CARDS</Link></li>
+          <li><Link to="/cart">CART</Link></li>
         </ul>
       </div>
 
+      {/* ✅ LoginButton component added */}
       <div className="Loggin-btn">
-        {isLoggedIn ? (
-          <button onClick={handleLogout}>Log Out</button>
-        ) : (
-          <button onClick={handleLogin}>Log In</button>
-        )}
+        <LoginButton />
       </div>
     </div>
   );
